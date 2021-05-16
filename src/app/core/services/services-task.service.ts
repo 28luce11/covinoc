@@ -15,4 +15,15 @@ export class ServicesTaskService {
     getTasks(): Observable<Task[]> {
         return this.http.get<Task[]>(this.baseUrl);
     }
+
+    updateTask(id: string, state: boolean): Observable<Task> {
+        const url = `${this.baseUrl}/${id}`;
+        return this.http.put<Task>(url, {state});
+    }
+
+    deleteTask(id: string): Observable<Task> {
+        const url = `${this.baseUrl}/${id}`;
+
+        return this.http.delete<Task>(url);
+    }
 }

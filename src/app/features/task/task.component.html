@@ -34,10 +34,11 @@
                         <td scope="row" class="text-center table-elements">{{task.id}}</td>
                         <td class="table-elements" [ngClass]="{'font-line': task.state}">{{task.title}}</td>
                         <td class="table-select table-elements">
-                            <input type="checkbox" class="form-check-input" id="completedTaskCheck" [checked]="task.state">
+                            <input type="checkbox" class="form-check-input" [checked]="task.state"
+                            (change)="checkboxChange(task, $event.target.checked)" >
                         </td>
                         <td class="table-icon table-elements">
-                            <i class="bi bi-trash delete"></i>
+                            <i class="bi bi-trash delete" (click)="deleteTask(task)"></i>
                         </td>
                     </tr>
                 </tbody>
