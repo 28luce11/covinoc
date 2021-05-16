@@ -2,3 +2,6 @@
 @import 'base/normalize';
 @import 'abstract/variables';
 @import 'abstract/mixin';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
