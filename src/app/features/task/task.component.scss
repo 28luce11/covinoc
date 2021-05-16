@@ -31,16 +31,25 @@
     }
 
     .table-task {
+        overflow: auto;
+        padding: 0;
 
         .table-title {
             color: $green-primary;
             text-align: center;
         }
 
+        .font-line {
+            text-decoration: line-through;
+        }
+
         .table-select {
-            //text-align: center;
-            margin: 0;
-            position: relative;
+            text-align: center;
+
+            .form-check-input{
+                position: relative;
+                margin: 0;
+            }
         }
 
         .table-icon {
@@ -53,10 +62,12 @@
     }
 
     @include from-breakpoint-desktop() {
-        
         .title-search {
             padding-top: 20px;
-            text-align: center;
+
+            .search {
+                padding-right: 0;
+            }
 
             .title-list {
                 text-align: left;
@@ -64,7 +75,6 @@
         }
 
         .table-task {
-
             .table-select {
                 margin: 0;
                 position: relative;

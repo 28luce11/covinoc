@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12  table-task">
+        <div class="col-12 table-task">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -30,11 +30,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="table-elements">1</th>
-                        <td class="table-elements">laboriosam</td>
+                    <tr *ngFor="let task of  tasks">
+                        <td scope="row" class="text-center table-elements">{{task.id}}</td>
+                        <td class="table-elements" [ngClass]="{'font-line': task.state}">{{task.title}}</td>
                         <td class="table-select table-elements">
-                            <input type="checkbox" class="form-check-input" id="completedTaskCheck">
+                            <input type="checkbox" class="form-check-input" id="completedTaskCheck" [checked]="task.state">
                         </td>
                         <td class="table-icon table-elements">
                             <i class="bi bi-trash delete"></i>
