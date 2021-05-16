@@ -2,23 +2,36 @@
     <div class="container">
         <div class="row">
             <div class="col-6 col-md-3">
-                <button class="btn-new-task btn btn-link" type="button">
+                <button class="btn-new-task btn btn-link" type="button" (click)="showForm = !showForm">
                     <i class="bi bi-plus-lg"></i>
                     Nueva tarea
                 </button>
             </div>
         </div>
-        <form class="row form-task">
+        <form class="row form-task"
+            *ngIf="showForm"
+            [formGroup]="formRegisterTask"
+            (ngSubmit)="send(formRegisterTask.value)">
             <div class="col-12 col-md-5 col-lg-6 form-group title-task">
                 <label for="title">Titulo</label>
-                <input type="text" class="form-control" id="title" placeholder="Ingrese Titulo..." autocomplete="off">
+                <input type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    formControlName="title"
+                    placeholder="Ingrese Titulo..."
+                    autocomplete="off">
             </div>
             <div class="col-12 col-md-3 col-lg-3 form-group form-check">
                 <label class="form-check-label" for="completedTaskCheck">Tarea completada</label>
-                <input type="checkbox" class="form-check-input" id="completedTaskCheck">
+                <input type="checkbox"
+                    class="form-check-input"
+                    id="state"
+                    name="state"
+                    formControlName="state">
             </div>
             <div class="col-8 offset-2 col-md-4 offset-md-0 col-lg-3 save-task-action">
-                <button type="submit" class="btn-save-task btn btn-light">
+                <button type="submit" class="btn-save-task btn btn-light" [disabled]="formRegisterTask.invalid">
                     <i class="bi bi-plus-lg"></i>
                     Guardar tarea
                 </button>

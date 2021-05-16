@@ -23,7 +23,10 @@ export class ServicesTaskService {
 
     deleteTask(id: string): Observable<Task> {
         const url = `${this.baseUrl}/${id}`;
-
         return this.http.delete<Task>(url);
+    }
+
+    saveTask(body: Task): Observable<Task> {
+        return this.http.post<Task>(this.baseUrl, body);
     }
 }

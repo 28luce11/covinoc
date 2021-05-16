@@ -35,4 +35,10 @@ export class TaskComponent implements OnInit {
             this.tasks.splice(pos, 1);
         });
     }
+
+    saveTask(task: Task): void {
+        this.servicesTask.saveTask(task).subscribe((res: Task) => {
+            this.tasks.push(res);
+        });
+    }
 }
