@@ -1,0 +1,98 @@
+@import 'abstract/variables';
+@import 'abstract/mixin';
+
+.container-fluid {
+    background-color: $green-new-task;
+    font-family: $font-new-task;
+    color: $white;
+    box-shadow: 0px 3px 6px $gray-border;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    .container {
+        padding: 0;
+    }
+
+    .btn-new-task {
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        color: $white;
+    }
+
+    .form-task {
+        margin-top: 16px;
+    }
+
+    .title-task {
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid $white;
+            color: $white;
+            outline: none;
+            box-shadow: none;
+            padding: 6px;
+
+            &::placeholder {
+                color: $white;
+            }
+        }
+    }
+
+    .form-check {
+        padding-left: 15px;
+        display: flex;
+        align-items: center;
+
+        .form-check-label {
+            padding-right: 10px;
+        }
+
+        .form-check-input {
+            margin: 0;
+            position: relative;
+        }
+    }
+
+    .btn-save-task {
+        border-radius: 30px;
+        height: 48px;
+        width: 100%;
+
+        i {
+            padding-right: 10px;
+        }
+    }
+
+    @include from-breakpoint-desktop() {
+        padding: 30px;
+
+        .form-task {
+            display: flex;
+            align-items: center;
+        }
+
+        .title-task {
+            margin: 0;
+        }
+
+        .form-check {
+            margin: 0;
+        }
+
+        .btn-new-task {
+            text-align: left;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .btn-save-task {
+            width: 200px;
+        }
+    }
+}
