@@ -1,1 +1,52 @@
 <app-add-task></app-add-task>
+<div class="container">
+    <div class="row title-search">
+        <div class="col-12 col-md-6 title-list">
+            <span class="title">
+                <i class="bi bi-card-checklist"></i>
+                Lista de tareas
+            </span>
+        </div>
+        <div class="col-12 col-md-6 search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar...">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary btn-button" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12  table-task">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="table-title">Id</th>
+                        <th scope="col" class="table-title">Mis tareas</th>
+                        <th scope="col" class="table-title">Completada</th>
+                        <th scope="col" class="table-title">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="table-elements">1</th>
+                        <td class="table-elements">laboriosam</td>
+                        <td class="table-select table-elements">
+                            <input type="checkbox" class="form-check-input" id="completedTaskCheck">
+                        </td>
+                        <td class="table-icon table-elements">
+                            <i class="bi bi-trash delete"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+                <!--<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+                </ngb-pagination>
+                -->
+            </div>
+        </div>
+    </div>
+</div>

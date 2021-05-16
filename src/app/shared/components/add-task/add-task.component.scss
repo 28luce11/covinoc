@@ -2,22 +2,25 @@
 @import 'abstract/mixin';
 
 .container-fluid {
-    background-color: $green-new-task;
-    font-family: $font-new-task;
+    background-color: $green-primary;
+    font-family: $roboto-font;
     color: $white;
     box-shadow: 0px 3px 6px $gray-border;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 0;
 
     .container {
-        padding: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 
     .btn-new-task {
+        text-align: left;
         border: none;
         box-shadow: none;
         width: 100%;
         color: $white;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .form-task {
@@ -85,10 +88,8 @@
             margin: 0;
         }
 
-        .btn-new-task {
-            text-align: left;
-            padding-left: 0;
-            padding-right: 0;
+        .save-task-action {
+            text-align: right;
         }
 
         .btn-save-task {

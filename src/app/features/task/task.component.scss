@@ -1,0 +1,79 @@
+@import 'abstract/variables';
+@import 'abstract/mixin';
+
+.container {
+    padding: 15px;
+
+    .title-list {
+        padding-bottom: 15px;
+        color: $green-primary;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .search {
+        padding-bottom: 15px;
+
+        .form-control {
+            border-color: $green-primary;
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-right: none;
+        }
+
+        .btn-button {
+            border-color: $green-primary;
+            color: $green-primary;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            border-left: none;
+        }
+    }
+
+    .table-task {
+
+        .table-title {
+            color: $green-primary;
+            text-align: center;
+        }
+
+        .table-select {
+            //text-align: center;
+            margin: 0;
+            position: relative;
+        }
+
+        .table-icon {
+            text-align: center;
+
+            .delete {
+                color: $red-alert;
+            }
+        }
+    }
+
+    @include from-breakpoint-desktop() {
+        
+        .title-search {
+            padding-top: 20px;
+            text-align: center;
+
+            .title-list {
+                text-align: left;
+            }
+        }
+
+        .table-task {
+
+            .table-select {
+                margin: 0;
+                position: relative;
+            }
+
+            .table-elements {
+                text-align: center;
+            }
+        }
+        
+    }
+}
