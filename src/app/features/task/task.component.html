@@ -32,7 +32,7 @@
                 <tbody>
                     <tr *ngFor="let task of filteredTasks">
                         <td scope="row" class="text-center table-elements">{{task.id}}</td>
-                        <td class="table-elements" [ngClass]="{'font-line': task.state}">{{task.title}}</td>
+                        <td class="table-elements title" [ngClass]="{'font-line': task.state}">{{task.title}}</td>
                         <td class="table-select table-elements">
                             <input type="checkbox" class="form-check-input" [checked]="task.state"
                             (change)="checkboxChange(task, $event.target.checked)" >

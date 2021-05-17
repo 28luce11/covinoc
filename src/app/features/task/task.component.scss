@@ -6,7 +6,7 @@
 
     .title-list {
         padding-bottom: 15px;
-        color: $green-primary;
+        color:$green-table;
         font-weight: bold;
         text-align: center;
     }
@@ -15,18 +15,22 @@
         padding-bottom: 15px;
 
         .form-control {
-            border-color: $green-primary;
+            border-color:$green-primary;
             border-top-left-radius: 30px;
             border-bottom-left-radius: 30px;
             border-right: none;
         }
 
         .btn-button {
-            border-color: $green-primary;
+            border-color:$green-primary;
             color: $green-primary;
             border-top-right-radius: 30px;
             border-bottom-right-radius: 30px;
             border-left: none;
+
+            i::before {
+                transform: scaleX(-1);
+            }
         }
     }
 
@@ -35,12 +39,16 @@
         padding: 0;
 
         .table-title {
-            color: $green-primary;
+            color: $green-table;
             text-align: center;
         }
 
         .font-line {
             text-decoration: line-through;
+        }
+
+        .title {
+            color: $font-color-table;
         }
 
         .table-select {
