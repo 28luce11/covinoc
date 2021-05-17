@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { Task } from '../../models/task.interface';
 
@@ -8,9 +10,14 @@ import { Task } from '../../models/task.interface';
     templateUrl: './add-task.component.html',
     styleUrls: ['./add-task.component.scss'],
 })
-export class AddTaskComponent implements OnInit {
+export class AddTaskComponent implements OnInit, OnDestroy {
     @Output()
     createNewTask = new EventEmitter();
+
+    @Input()
+    resetForm: Observable<boolean>;
+
+    private readonly destroy$ = new Subject();
 
     formRegisterTask: FormGroup;
     showForm = false;
@@ -19,6 +26,23 @@ export class AddTaskComponent implements OnInit {
 
     ngOnInit(): void {
         this.buildForm();
+        this.resetFormInit();
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+
+    resetFormInit(): void {
+        this.resetForm
+            .pipe(
+                takeUntil(this.destroy$)
+            )
+            .subscribe(() => {
+                this.formRegisterTask.reset();
+                this.showForm = false;
+            });
     }
 
     buildForm() {

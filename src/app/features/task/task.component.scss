@@ -62,6 +62,10 @@
         }
     }
 
+    .pagination {
+        justify-content: center;
+    }
+
     @include from-breakpoint-desktop() {
         .title-search {
             padding-top: 20px;

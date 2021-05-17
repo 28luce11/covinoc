@@ -1,4 +1,4 @@
-<app-add-task (createNewTask)="saveTask($event)"></app-add-task>
+<app-add-task (createNewTask)="saveTask($event)" [resetForm]="resetFormSubject$.asObservable()"></app-add-task>
 <div class="container">
     <div class="row title-search">
         <div class="col-12 col-md-6 title-list">
@@ -9,7 +9,7 @@
         </div>
         <div class="col-12 col-md-6 search">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar...">
+                <input #searchInput type="text" class="form-control" placeholder="Buscar...">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary btn-button" type="button">
                         <i class="bi bi-search"></i>
@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let task of  tasks">
+                    <tr *ngFor="let task of filteredTasks">
                         <td scope="row" class="text-center table-elements">{{task.id}}</td>
                         <td class="table-elements" [ngClass]="{'font-line': task.state}">{{task.title}}</td>
                         <td class="table-select table-elements">
@@ -38,15 +38,25 @@
                             (change)="checkboxChange(task, $event.target.checked)" >
                         </td>
                         <td class="table-icon table-elements">
-                            <i class="bi bi-trash delete" (click)="deleteTask(task)"></i>
+                            <i class="bi bi-trash delete" (click)="deleteTask(task.id)"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="d-flex justify-content-between p-2">
-                <!--<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+            <div class="pagination">
+                <ngb-pagination [collectionSize]="filteredSearchTasks?.length"
+                    [(page)]="page"
+                    [maxSize]="3"
+                    [rotate]="true"
+                    [pageSize]="pageSize"
+                    (pageChange)="refreshTask()">
+                    <ng-template ngbPaginationPrevious>
+                        <i class="bi bi-chevron-left"></i>
+                    </ng-template>
+                    <ng-template ngbPaginationNext>
+                        <i class="bi bi-chevron-right"></i>
+                    </ng-template>
                 </ngb-pagination>
-                -->
             </div>
         </div>
     </div>
