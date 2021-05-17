@@ -1,0 +1,17 @@
+@mixin from-breakpoint($size) {
+    @media screen and (min-width: $size) {
+        @content;
+    }
+}
+
+@mixin from-breakpoint-tablet() {
+    @include from-breakpoint(576px) {
+        @content;
+    }
+}
+
+@mixin from-breakpoint-desktop() {
+    @include from-breakpoint(768px) {
+        @content;
+    }
+}

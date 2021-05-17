@@ -1,0 +1,40 @@
+ngb-pagination .page-item {
+    margin-right: 10px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    .page-link {
+        box-shadow: 0px 3px 6px $gray-border;
+        border-radius: 9px;
+        color: $white;
+        background-color: $gray-paginator;
+        padding: 6px;
+    }
+
+    &.disabled .page-link,
+    &:first-child .page-link,
+    &:last-child .page-link {
+        background-color: transparent;
+        border-radius: 9px;
+        color: $blue-secondary;
+        box-shadow: none;
+        padding: 5px 0;
+        border: none;
+
+        i::before {
+            font-size: 25px;
+            font-weight: 700 !important;
+        }
+    }
+
+    &.disabled .page-link {
+        color: $gray-paginator;
+    }
+
+    &.active .page-link {
+        background-color: $yellow-secondary;
+        border: none;
+    }
+}
