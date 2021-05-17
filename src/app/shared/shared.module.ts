@@ -9,25 +9,25 @@ import { HeaderComponent } from './components/header/header.component';
 import { ToastComponent } from './components/toast/toast.component';
 
 const shared = [
-  // components
-  HeaderComponent,
-  AddTaskComponent,
-  ToastComponent
+    // components
+    HeaderComponent,
+    AddTaskComponent,
+    ToastComponent
 ];
 
 const exports = [
-  ...shared,
-  NgbPaginationModule,
-  NgbToastModule
+    ...shared,
+    NgbPaginationModule,
+    NgbToastModule
 ];
 
 @NgModule({
-  declarations: shared,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgbToastModule
-  ],
-  exports
+    declarations: shared,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgbToastModule
+    ],
+    exports
 })
 export class SharedModule { }

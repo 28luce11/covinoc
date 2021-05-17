@@ -1,21 +1,19 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-
-import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 
 import { ToastModel } from '../../models/toast.interface';
 import { ToastService } from '../../../core/services/toast/toast.service';
 
 @Component({
-  selector: 'app-toast',
-  templateUrl: './toast.component.html',
-  styleUrls: ['./toast.component.scss']
+    selector: 'app-toast',
+    templateUrl: './toast.component.html',
+    styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent implements OnInit {
-  get toast(): ToastModel {
-    return this.toastService.toast;
-  }
+    get toast(): ToastModel {
+        return this.toastService.toast;
+    }
 
-  constructor(private toastService: ToastService) { }
+    constructor(private toastService: ToastService) { }
 
-  ngOnInit(): void {}
+    ngOnInit(): void { }
 }
