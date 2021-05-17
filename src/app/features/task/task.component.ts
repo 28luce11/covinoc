@@ -2,9 +2,10 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, OnDestroy } fr
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
-import { ServicesTaskService } from 'src/app/core/services/services-task.service';
-import { Task } from 'src/app/shared/models/task.interface';
 import { messages } from '../../shared/constants/message.constant';
+import { Task } from 'src/app/shared/models/task.interface';
+import { TaskService } from 'src/app/core/services/task/task.service';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
 
 @Component({
     selector: 'app-task',
@@ -25,7 +26,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     pageSize = 4;
     searchCriteria: string;
 
-    constructor(private servicesTask: ServicesTaskService) { }
+    constructor(private servicesTask: TaskService, private toastService: ToastService) { }
 
     ngOnInit(): void {
         this.getTasks();
@@ -42,28 +43,36 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
 
     checkboxChange(task: Task, newValue: boolean): void {
         this.servicesTask.updateTask(task.id, newValue)
-        .subscribe((res: Task) => {
-            task.state = res.state;
-            this.successAction(messages.add);
-        }, () => {
-            this.failedAction();
-        });
+            .subscribe((res: Task) => {
+                task.state = res.state;
+                this.toastService.showSuccess(messages.update);
+            }, () => {
+                this.toastService.showFail();
+            });
     }
 
     deleteTask(id: string): void {
-        this.servicesTask.deleteTask(id).subscribe((res: Task) => {
-            const pos = this.tasks.findIndex(task => task.id === res.id);
-            this.tasks.splice(pos, 1);
-            this.filterByCriteria(this.searchCriteria);
-        });
+        this.servicesTask.deleteTask(id)
+            .subscribe((res: Task) => {
+                const pos = this.tasks.findIndex(task => task.id === res.id);
+                this.tasks.splice(pos, 1);
+                this.filterByCriteria(this.searchCriteria);
+                this.toastService.showSuccess(messages.delete);
+            }, () => {
+                this.toastService.showFail();
+            });
     }
 
     saveTask(task: Task): void {
-        this.servicesTask.saveTask(task).subscribe((res: Task) => {
-            this.resetFormSubject$.next(true);
-            this.tasks.push(res);
-            this.filterByCriteria(this.searchCriteria);
-        });
+        this.servicesTask.saveTask(task)
+            .subscribe((res: Task) => {
+                this.resetFormSubject$.next(true);
+                this.tasks.push(res);
+                this.filterByCriteria(this.searchCriteria);
+                this.toastService.showSuccess(messages.add);
+            }, () => {
+                this.toastService.showFail();
+            });
     }
 
     refreshTask(): void {
@@ -72,11 +81,14 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     private getTasks(): void {
-        this.servicesTask.getTasks().subscribe((res: Task[]) => {
-            this.tasks = res;
-            this.filteredSearchTasks = res;
-            this.refreshTask();
-        });
+        this.servicesTask.getTasks()
+            .subscribe((res: Task[]) => {
+                this.tasks = res;
+                this.filteredSearchTasks = res;
+                this.refreshTask();
+            }, () => {
+                this.toastService.showFail();
+            });
     }
 
     private searchInputEventInit(): void {
@@ -102,13 +114,5 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
             this.filteredSearchTasks =  this.tasks;
         }
         this.refreshTask();
-    }
-
-    private failedAction(): void {
-        messages.error;
-    }
-
-    private successAction(message: string): void {
-
     }
 }

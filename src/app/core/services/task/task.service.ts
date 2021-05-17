@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
-export class ServicesTaskService {
+export class TaskService {
     baseUrl = 'https://608adc0d737e470017b7410f.mockapi.io/api/v1/todos';
 
     constructor(private http: HttpClient) { }

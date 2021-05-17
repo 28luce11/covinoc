@@ -4,13 +4,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgbPaginationModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { HeaderComponent } from './components/header/header.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 const shared = [
   // components
   HeaderComponent,
-  AddTaskComponent
+  AddTaskComponent,
+  ToastComponent
 ];
 
 const exports = [
@@ -23,7 +25,8 @@ const exports = [
   declarations: shared,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbToastModule
   ],
   exports
 })
